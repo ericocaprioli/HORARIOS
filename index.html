@@ -9,8 +9,8 @@
 <body>
   <main class="container">
     <header>
-      <h1>Horários da Escola</h1>
-      <p>Encontre os PDFs dos horários escolares. Coloque os arquivos na pasta <strong>pdfs/</strong> e atualize <strong>pdfs.js</strong>.</p>
+      <h1>Horários Escolares Colégio Estadual Hercília França do Nascimento</h1>
+      <p>Selecione o horário para visualização</p>
     </header>
 
     <section class="search-box">
@@ -32,23 +32,11 @@
     function createPdfCard(item) {
       const card = document.createElement('article');
       card.className = 'pdf-card';
+      card.onclick = () => window.open(`pdfs/${item.filename}`, '_blank');
 
       const title = document.createElement('h2');
       title.textContent = item.title;
       card.appendChild(title);
-
-      if (item.description) {
-        const description = document.createElement('p');
-        description.textContent = item.description;
-        card.appendChild(description);
-      }
-
-      const link = document.createElement('a');
-      link.href = `pdfs/${item.filename}`;
-      link.target = '_blank';
-      link.rel = 'noopener';
-      link.textContent = 'Abrir PDF';
-      card.appendChild(link);
 
       return card;
     }
