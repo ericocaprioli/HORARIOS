@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horários da Escola</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Horários da Escola</h1>
+      <p>Encontre os PDFs dos horários escolares. Coloque os arquivos na pasta <strong>pdfs/</strong> e atualize <strong>pdfs.js</strong>.</p>
+    </header>
+
+    <section class="search-box">
+      <input id="searchInput" type="search" placeholder="Filtrar por nome, turma ou ano..." aria-label="Filtrar horários">
+    </section>
+
+    <section>
+      <div id="pdfList" class="pdf-list"></div>
+      <div id="noResults" class="empty-state" hidden>Nenhum horário encontrado. Verifique <code>pdfs.js</code> ou adicione mais arquivos.</div>
+    </section>
+  </main>
+
+  <script src="pdfs.js"></script>
+  <script>
+    const listElement = document.getElementById('pdfList');
+    const noResultsElement = document.getElementById('noResults');
+    const searchInput = document.getElementById('searchInput');
+
+    function createPdfCard(item) {
+      const card = document.createElement('article');
+      card.className = 'pdf-card';
+
+      const title = document.createElement('h2');
+      title.textContent = item.title;
+      card.appendChild(title);
+
+      if (item.description) {
+        const description = document.createElement('p');
+        description.textContent = item.description;
+        card.appendChild(description);
+      }
+
+      const link = document.createElement('a');
+      link.href = `pdfs/${item.filename}`;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'Abrir PDF';
+      card.appendChild(link);
+
+      return card;
+    }
+
+    function renderList(filterText = '') {
+      listElement.innerHTML = '';
+      const query = filterText.trim().toLowerCase();
+      const filtered = pdfLinks.filter(item => {
+        const target = `${item.title} ${item.description || ''}`.toLowerCase();
+        return target.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        noResultsElement.hidden = false;
+        return;
+      }
+
+      noResultsElement.hidden = true;
+      filtered.forEach(item => listElement.appendChild(createPdfCard(item)));
+    }
+
+    searchInput.addEventListener('input', () => renderList(searchInput.value));
+
+    renderList();
+  </script>
+</body>
+</html>
