@@ -8,12 +8,7 @@
 </head>
 <body>
   <main class="container">
-    <header class="top-bar">
-      <div class="status-bar">
-        <span class="status-dot"></span>
-        <span class="status-text">iOS</span>
-        <span class="status-dot"></span>
-      </div>
+    <header>
       <h1>Horários Escolares Colégio Estadual Hercília França do Nascimento</h1>
       <p>Selecione o horário para visualização</p>
     </header>
@@ -44,6 +39,11 @@
       card.className = 'pdf-card';
       card.classList.add(item.theme || 'theme-default');
       card.onclick = () => window.open(`pdfs/${item.filename}`, '_blank');
+
+      const icon = document.createElement('div');
+      icon.className = 'pdf-icon';
+      icon.textContent = item.category === 'general' ? '📊' : item.category === 'turma' ? '📚' : '👩‍🏫';
+      card.appendChild(icon);
 
       const title = document.createElement('h2');
       title.textContent = item.title;
