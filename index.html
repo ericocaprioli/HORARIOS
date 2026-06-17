@@ -40,18 +40,19 @@
       card.classList.add(item.theme || 'theme-default');
       card.onclick = () => window.open(`pdfs/${item.filename}`, '_blank');
 
-      const icon = document.createElement('div');
-      icon.className = 'pdf-icon';
-      icon.textContent = item.category === 'general' ? '📊' : item.category === 'turma' ? '📚' : '👩‍🏫';
-      card.appendChild(icon);
-
       const title = document.createElement('h2');
       title.textContent = item.title;
       card.appendChild(title);
 
       const subtitle = document.createElement('p');
       subtitle.className = 'subtitle';
-      subtitle.textContent = item.category === 'general' ? 'Visão geral' : item.category === 'turma' ? 'Turma' : 'Professor';
+      if (item.category === 'general') {
+        subtitle.textContent = 'Visão geral';
+      } else if (item.category === 'turma') {
+        subtitle.textContent = item.reference || 'Turma';
+      } else {
+        subtitle.textContent = 'Professor';
+      }
       card.appendChild(subtitle);
 
       return card;
