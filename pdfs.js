@@ -11,7 +11,7 @@ const pdfLinks = [
   { title: '8B', filename: '8b.pdf', category: 'turma', theme: 'theme-turma', reference: 'HQ' },
   { title: '9A', filename: '9a.pdf', category: 'turma', theme: 'theme-turma', reference: 'PI' },
   { title: '9B', filename: '9b.pdf', category: 'turma', theme: 'theme-turma', reference: 'HP' },
-  { title: 'Adrielí', filename: 'adrieli.pdf', category: 'professor' },
+  { title: 'Adrieli', filename: 'adrieli.pdf', category: 'professor' },
   { title: 'Alessandra', filename: 'alessandra.pdf', category: 'professor' },
   { title: 'Andreia F.', filename: 'andreia f.pdf', category: 'professor' },
   { title: 'Andreia M.', filename: 'andreia m.pdf', category: 'professor' },
